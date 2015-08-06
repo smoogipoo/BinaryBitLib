@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BinaryBitLib.BinaryBitLib;
+using BinaryBitLib;
 using System.IO;
 
 namespace BinaryBitLibTests

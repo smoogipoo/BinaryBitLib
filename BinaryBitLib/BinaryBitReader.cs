@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace BinaryBitLib.BinaryBitLib
+namespace BinaryBitLib
 {
     public class BinaryBitReader : IDisposable
     {
