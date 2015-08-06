@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryBitLib", "BinaryBitLib\BinaryBitLib.csproj", "{2E0C007B-008A-46D0-9595-046016695603}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryBitLibTests", "BinaryBitLibTests\BinaryBitLibTests.csproj", "{E9EF87B5-C9D6-4295-9743-814DED04A364}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E0C007B-008A-46D0-9595-046016695603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E0C007B-008A-46D0-9595-046016695603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E0C007B-008A-46D0-9595-046016695603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E0C007B-008A-46D0-9595-046016695603}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9EF87B5-C9D6-4295-9743-814DED04A364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9EF87B5-C9D6-4295-9743-814DED04A364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9EF87B5-C9D6-4295-9743-814DED04A364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9EF87B5-C9D6-4295-9743-814DED04A364}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
