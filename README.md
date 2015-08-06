@@ -1,6 +1,10 @@
 # BinaryBitLib
 A C# library to operate on data one bit at a time.
 
+Nuget
+-----
+https://www.nuget.org/packages/BinaryBitLib/
+
 License
 -------
 The MIT License (MIT)
