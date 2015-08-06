@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="BinaryBitLib\BinaryBitReader.cs" />
     <Compile Include="BinaryBitLib\BinaryBitWriter.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
