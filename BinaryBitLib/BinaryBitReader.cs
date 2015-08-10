@@ -431,8 +431,12 @@ namespace BinaryBitLib
             if (!disposed)
             {
                 if (disposing)
-                    BaseStream.Dispose();
+                {
+                    if (BaseStream != null)
+                        BaseStream.Dispose();
+                }
 
+                buffer = null;
                 BaseStream = null;
                 
                 disposed = true;

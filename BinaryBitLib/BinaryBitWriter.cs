@@ -304,7 +304,13 @@ namespace BinaryBitLib
             if (!disposed)
             {
                 if (disposing)
-                    BaseStream.Dispose();
+                {
+                    if (BaseStream != null)
+                    {
+                        BaseStream.Flush();
+                        BaseStream.Dispose();
+                    }
+                }
 
                 BaseStream = null;
                 
