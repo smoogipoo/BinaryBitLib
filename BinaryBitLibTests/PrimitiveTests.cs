@@ -61,22 +61,20 @@ namespace BinaryBitLibTests
         [TestMethod]
         public void TestBits()
         {
-            const int BITS_COUNT = 65536;
-
             using (MemoryStream ms = new MemoryStream())
             using (BinaryBitWriter bw = new BinaryBitWriter(ms))
             using (BinaryBitReader br = new BinaryBitReader(ms))
             {
-                byte[] writeBytes = new byte[BITS_COUNT];
-                for (int i = 0; i < BITS_COUNT; i++)
+                byte[] writeBytes = new byte[Config.MULTI_TEST_COUNT];
+                for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
                     writeBytes[i] = 1;
                 bw.WriteBits(writeBytes);
                 bw.Flush();
 
                 ms.Position = 0;
 
-                byte[] readBytes = br.ReadBits(BITS_COUNT);
-                for (int i = 0; i < BITS_COUNT; i++)
+                byte[] readBytes = br.ReadBits(Config.MULTI_TEST_COUNT);
+                for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
                     Assert.IsTrue((readBytes[i / 8] & (1 << i % 8)) > 0);
             }
         }
@@ -102,22 +100,20 @@ namespace BinaryBitLibTests
         [TestMethod]
         public void TestBytes()
         {
-            const int BYTES_COUNT = 65536;
-
             using (MemoryStream ms = new MemoryStream())
             using (BinaryBitWriter bw = new BinaryBitWriter(ms))
             using (BinaryBitReader br = new BinaryBitReader(ms))
             {
                 Random rand = new Random();
 
-                byte[] writeBytes = new byte[BYTES_COUNT];
+                byte[] writeBytes = new byte[Config.MULTI_TEST_COUNT];
                 rand.NextBytes(writeBytes);
                 bw.WriteBytes(writeBytes);
                 bw.Flush();
 
                 ms.Position = 0;
 
-                byte[] readBytes = br.ReadBytes(BYTES_COUNT);
+                byte[] readBytes = br.ReadBytes(Config.MULTI_TEST_COUNT);
                 for (int i = 0; i < readBytes.Length; i++)
                     Assert.AreEqual(readBytes[i], writeBytes[i]);
             }

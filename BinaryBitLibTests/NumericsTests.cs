@@ -29,16 +29,14 @@ namespace BinaryBitLibTests
         [TestMethod]
         public void TestMultiUnsignedInt()
         {
-            const int SHORTS_COUNT = 65535;
-
             using (MemoryStream ms = new MemoryStream())
             using (BinaryBitWriter bw = new BinaryBitWriter(ms))
             using (BinaryBitReader br = new BinaryBitReader(ms))
             {
                 Random rand = new Random();
-                ushort[] vals = new ushort[SHORTS_COUNT];
-                int[] bitLengths = new int[SHORTS_COUNT];
-                for (int i = 0; i < SHORTS_COUNT; i++)
+                ushort[] vals = new ushort[Config.MULTI_TEST_COUNT];
+                int[] bitLengths = new int[Config.MULTI_TEST_COUNT];
+                for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
                 {
                     vals[i] = (ushort)(rand.NextDouble() * ushort.MaxValue);
                     bitLengths[i] = (int)(rand.Next(16, 33));
@@ -49,7 +47,7 @@ namespace BinaryBitLibTests
 
                 ms.Position = 0;
 
-                for (int i = 0; i < SHORTS_COUNT; i++)
+                for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
                     Assert.AreEqual(br.ReadUInt(bitLengths[i]), vals[i]);
             }
         }
@@ -78,16 +76,14 @@ namespace BinaryBitLibTests
         [TestMethod]
         public void TestMultiSignedInt()
         {
-            const int SHORTS_COUNT = 65535;
-
             using (MemoryStream ms = new MemoryStream())
             using (BinaryBitWriter bw = new BinaryBitWriter(ms))
             using (BinaryBitReader br = new BinaryBitReader(ms))
             {
                 Random rand = new Random();
-                short[] vals = new short[SHORTS_COUNT * 2];
-                int[] bitLengths = new int[SHORTS_COUNT * 2];
-                for (int i = 0; i < SHORTS_COUNT * 2; i += 2)
+                short[] vals = new short[Config.MULTI_TEST_COUNT * 2];
+                int[] bitLengths = new int[Config.MULTI_TEST_COUNT * 2];
+                for (int i = 0; i < Config.MULTI_TEST_COUNT * 2; i += 2)
                 {
                     vals[i] = (short)(rand.NextDouble() * short.MaxValue);
                     vals[i + 1] = (short)(rand.NextDouble() * short.MinValue);
@@ -102,8 +98,143 @@ namespace BinaryBitLibTests
 
                 ms.Position = 0;
 
-                for (int i = 0; i < SHORTS_COUNT * 2; i++)
+                for (int i = 0; i < Config.MULTI_TEST_COUNT * 2; i++)
                     Assert.AreEqual(br.ReadInt(bitLengths[i]), vals[i]);
+            }
+        }
+
+        [TestMethod]
+        public void TestSingleFloat()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            using (BinaryBitWriter bw = new BinaryBitWriter(ms))
+            using (BinaryBitReader br = new BinaryBitReader(ms))
+            {
+                Random rand = new Random();
+                float pVal = (float)(rand.NextDouble() * float.MaxValue);
+                float mVal = (float)(rand.NextDouble() * float.MinValue);
+                bw.WriteFloat(pVal);
+                bw.WriteFloat(mVal);
+                bw.Flush();
+
+                ms.Position = 0;
+
+                Assert.AreEqual(br.ReadFloat(), pVal);
+                Assert.AreEqual(br.ReadFloat(), mVal);
+            }
+        }
+
+        [TestMethod]
+        public void TestMultiFloat()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            using (BinaryBitWriter bw = new BinaryBitWriter(ms))
+            using (BinaryBitReader br = new BinaryBitReader(ms))
+            {
+                Random rand = new Random();
+                float[] vals = new float[Config.MULTI_TEST_COUNT];
+                for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
+                {
+                    vals[i] = (float)(rand.NextDouble() * float.MaxValue);
+                    bw.WriteDouble(vals[i]);
+                }
+
+                bw.Flush();
+
+                ms.Position = 0;
+
+                for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
+                    Assert.AreEqual(br.ReadDouble(), vals[i]);
+            }
+        }
+
+        [TestMethod]
+        public void TestSingleDouble()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            using (BinaryBitWriter bw = new BinaryBitWriter(ms))
+            using (BinaryBitReader br = new BinaryBitReader(ms))
+            {
+                Random rand = new Random();
+                double pVal = (double)(rand.NextDouble() * double.MaxValue);
+                double mVal = (double)(rand.NextDouble() * double.MinValue);
+                bw.WriteDouble(pVal);
+                bw.WriteDouble(mVal);
+                bw.Flush();
+
+                ms.Position = 0;
+
+                Assert.AreEqual(br.ReadDouble(), pVal);
+                Assert.AreEqual(br.ReadDouble(), mVal);
+            }
+        }
+
+        [TestMethod]
+        public void TestMultiDouble()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            using (BinaryBitWriter bw = new BinaryBitWriter(ms))
+            using (BinaryBitReader br = new BinaryBitReader(ms))
+            {
+                Random rand = new Random();
+                double[] vals = new double[Config.MULTI_TEST_COUNT];
+                for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
+                {
+                    vals[i] = (double)(rand.NextDouble() * double.MaxValue);
+                    bw.WriteDouble(vals[i]);
+                }
+
+                bw.Flush();
+
+                ms.Position = 0;
+
+                for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
+                    Assert.AreEqual(br.ReadDouble(), vals[i]);
+            }
+        }
+
+        [TestMethod]
+        public void TestSingleDecimal()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            using (BinaryBitWriter bw = new BinaryBitWriter(ms))
+            using (BinaryBitReader br = new BinaryBitReader(ms))
+            {
+                Random rand = new Random();
+                decimal pVal = (decimal)((decimal)rand.NextDouble() * decimal.MaxValue);
+                decimal mVal = (decimal)((decimal)rand.NextDouble() * decimal.MinValue);
+                bw.WriteDecimal(pVal);
+                bw.WriteDecimal(mVal);
+                bw.Flush();
+
+                ms.Position = 0;
+
+                Assert.AreEqual(br.ReadDecimal(), pVal);
+                Assert.AreEqual(br.ReadDecimal(), mVal);
+            }
+        }
+
+        [TestMethod]
+        public void TestMultiDecimal()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            using (BinaryBitWriter bw = new BinaryBitWriter(ms))
+            using (BinaryBitReader br = new BinaryBitReader(ms))
+            {
+                Random rand = new Random();
+                decimal[] vals = new decimal[Config.MULTI_TEST_COUNT];
+                for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
+                {
+                    vals[i] = (decimal)((decimal)rand.NextDouble() * decimal.MaxValue);
+                    bw.WriteDecimal(vals[i]);
+                }
+
+                bw.Flush();
+
+                ms.Position = 0;
+
+                for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
+                    Assert.AreEqual(br.ReadDecimal(), vals[i]);
             }
         }
     }
