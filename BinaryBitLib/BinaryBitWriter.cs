@@ -164,8 +164,44 @@ namespace BinaryBitLib
             numBits--;
 
             WriteULong(tmp, numBits);
+        }
+
+        /// <summary>
+        /// Writes a float of a specific bit-length to the stream.
+        /// </summary>
+        /// <param name="value">The float to write.</param>
+        /// <param name="numBits">The bit-length of the float.</param>
+        public unsafe void WriteFloat(float value, int numBits = 32)
+        {
+            if (numBits > 32 || numBits < 1)
+                throw new ArgumentException("numBits");
+
+            uint tmp = *(uint*)&value;
+            WriteUInt(tmp, numBits);
+        }
+
+        /// <summary>
+        /// Writes a double of a specific bit-length to the stream.
+        /// </summary>
+        /// <param name="value">The double to write.</param>
+        /// <param name="numBits">The bit-length of the double.</param>
+        public unsafe void WriteDouble(double value, int numBits = 64)
+        {
+            if (numBits > 64 || numBits < 1)
+                throw new ArgumentException("numBits");
+
+            ulong tmp = *(ulong*)&value;
+            WriteULong(tmp, numBits);
+        }
+
+        public void WriteDecimal(decimal value, int numBits = 128)
+        {
+            if (numBits > 128 || numBits < 1)
+                throw new ArgumentException("numBits");
+
+            int[] bits = Decimal.GetBits(value);
             for (int i = 0; i < numBits; i++)
-                WriteBit((value & ((long)1 << i)) > 0 ? (byte)1 : (byte)0);
+                WriteBit((bits[i / 32] & ((uint)1 << i % 32)) > 0 ? (byte)1 : (byte)0);
         }
 
         /// <summary>

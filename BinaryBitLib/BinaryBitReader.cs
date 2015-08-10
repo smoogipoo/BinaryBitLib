@@ -272,6 +272,51 @@ namespace BinaryBitLib
         }
 
         /// <summary>
+        /// Reads a float of a specific bit-length from the stream.
+        /// </summary>
+        /// <param name="numBits">The number of bits to read.</param>
+        /// <returns>The float.</returns>
+        public unsafe float ReadFloat(int numBits = 32)
+        {
+            if (numBits > 32 || numBits < 1)
+                throw new ArgumentException("numBits");
+
+            uint tmp = ReadUInt(numBits);
+            return *(float*)&tmp;
+        }
+
+        /// <summary>
+        /// Reads a double of a specific bit-length from the stream.
+        /// </summary>
+        /// <param name="numBits">The number of bits to read.</param>
+        /// <returns>The double.</returns>
+        public unsafe double ReadDouble(int numBits = 64)
+        {
+            if (numBits > 64 || numBits < 1)
+                throw new ArgumentException("numBits");
+
+            ulong tmp = ReadULong(numBits);
+            return *(double*)&tmp;
+        }
+
+        /// <summary>
+        /// Reads a decimal of a specific bit-length from the stream.
+        /// </summary>
+        /// <param name="numBits">The number of bits to read.</param>
+        /// <returns>The decimal.</returns>
+        public decimal ReadDecimal(int numBits = 128)
+        {
+            if (numBits > 128 || numBits < 1)
+                throw new ArgumentException("numBits");
+
+            int[] bits = new int[4];
+            for (int i = 0; i < numBits; i++)
+                bits[i / 32] |= ReadBit() << i % 32;
+
+            return new decimal(bits);
+        }
+
+        /// <summary>
         /// Reads one character from the stream.
         /// </summary>
         /// <returns>The char.</returns>
