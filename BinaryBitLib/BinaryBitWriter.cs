@@ -113,7 +113,7 @@ namespace BinaryBitLib
                 throw new ArgumentException("numBits");
 
             for (int i = 0; i < numBits; i++)
-                WriteBit((value & (1 << i)) > 0 ? (byte)1 : (byte)0);
+                WriteBit((value & ((uint)1 << i)) > 0 ? (byte)1 : (byte)0);
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace BinaryBitLib
                 throw new ArgumentException("numBits");
 
             for (int i = 0; i < numBits; i++)
-                WriteBit(((long)value & (1 << i)) > 0 ? (byte)1 : (byte)0);
+                WriteBit((value & ((ulong)1 << i)) > 0 ? (byte)1 : (byte)0);
         }
 
         /// <summary>
@@ -135,17 +135,17 @@ namespace BinaryBitLib
         /// </summary>
         /// <param name="value">The integer to write.</param>
         /// <param name="numBits">The bit-length of the integer.</param>
-        public void WriteInt(int value, int numBits = 32)
+        public unsafe void WriteInt(int value, int numBits = 32)
         {
             if (numBits > 32 || numBits < 1)
                 throw new ArgumentException("numBits");
 
-            byte msb = value < 0 ? (byte)1 : (byte)0;
-            WriteBit(msb);
+            uint tmp = *(uint*)&value;
+            
+            WriteBit((tmp & ((uint)1 << numBits - 1)) > 0 ? (byte)1 : (byte)0);
             numBits--;
 
-            for (int i = 0; i < numBits; i++)
-                WriteBit((value & (1 << i)) > 0 ? (byte)1 : (byte)0);
+            WriteUInt(tmp, numBits);
         }
 
         /// <summary>
@@ -153,17 +153,19 @@ namespace BinaryBitLib
         /// </summary>
         /// <param name="value">The long to write.</param>
         /// <param name="numBits">The bit-length of the integer.</param>
-        public void WriteLong(long value, int numBits = 64)
+        public unsafe void WriteLong(long value, int numBits = 64)
         {
             if (numBits > 64 || numBits < 1)
                 throw new ArgumentException("numBits");
 
-            byte msb = value < 0 ? (byte)1 : (byte)0;
-            WriteBit(msb);
+            ulong tmp = *(ulong*)&value;
+            
+            WriteBit((tmp & ((ulong)1 << numBits - 1)) > 0 ? (byte)1 : (byte)0);
             numBits--;
 
+            WriteULong(tmp, numBits);
             for (int i = 0; i < numBits; i++)
-                WriteBit((value & (1 << i)) > 0 ? (byte)1 : (byte)0);
+                WriteBit((value & ((long)1 << i)) > 0 ? (byte)1 : (byte)0);
         }
 
         /// <summary>
