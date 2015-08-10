@@ -26,19 +26,19 @@ namespace BinaryBitLib
         /// <summary>
         /// Amount of available bits in the buffer.
         /// </summary>
-        private int bufferAvailableBits;
+        private long bufferAvailableBits;
 
         /// <summary>
         /// The current bit in the buffer.
         /// </summary>
-        private int _bufferCurrentPosition;
-        private int bufferCurrentPosition
+        private long _bufferCurrentPosition;
+        private long bufferCurrentPosition
         {
             get { return _bufferCurrentPosition; }
             set
             {
                 _bufferCurrentPosition = value;
-                if (_bufferCurrentPosition >= BufferSize * 8)
+                if (_bufferCurrentPosition >= (long)BufferSize * 8)
                     _bufferCurrentPosition = 0;
             }
         }
@@ -46,12 +46,12 @@ namespace BinaryBitLib
         /// <summary>
         /// Total number of bits read from the stream.
         /// </summary>
-        public long BitsRead { get; private set; }
+        public ulong BitsRead { get; private set; }
 
         /// <summary>
         /// Total number of bytes read from the stream.
         /// </summary>
-        public long BytesRead { get { return BitsRead / 8; } }
+        public uint BytesRead { get { return (uint)(BitsRead / 8); } }
 
         private int bufferSize = 0;
         /// <summary>
@@ -71,9 +71,9 @@ namespace BinaryBitLib
                 bufferSize = value;
 
                 //Reset the buffer
-                BaseStream.Position -= bufferAvailableBits / 8;
+                BaseStream.Position -= (long)(bufferAvailableBits / 8);
                 if (oldBufferSize > 0)
-                    bufferCurrentPosition %= oldBufferSize;
+                    bufferCurrentPosition %= (long)oldBufferSize;
                 bufferAvailableBits = 0;
 
                 Array.Resize(ref buffer, bufferSize);
@@ -104,7 +104,7 @@ namespace BinaryBitLib
         {
             EnsureCapacity(1);
 
-            bool res = (buffer[bufferCurrentPosition / 8] & (1 << bufferCurrentPosition % 8)) != 0;
+            bool res = (buffer[bufferCurrentPosition / 8] & (1 << (int)(bufferCurrentPosition % 8))) != 0;
             
             bufferCurrentPosition++;
             bufferAvailableBits--;
@@ -396,7 +396,7 @@ namespace BinaryBitLib
         protected void EnsureCapacity(long bitCount)
         {
             if (bufferAvailableBits - bitCount < 0)
-                bufferAvailableBits = BaseStream.Read(buffer, 0, BufferSize - bufferAvailableBits / 8) * 8;
+                bufferAvailableBits = (long)BaseStream.Read(buffer, 0, BufferSize - (int)(bufferAvailableBits / 8)) * 8;
         }
 
         /// <summary>
