@@ -12,30 +12,6 @@ namespace BinaryBitLibTests
     public class PrimitiveTests
     {
         [TestMethod]
-        public void TestOverflow()
-        {
-            using (MemoryStream ms = new MemoryStream())
-            using (BinaryBitWriter bw = new BinaryBitWriter(ms))
-            using (BinaryBitReader br = new BinaryBitReader(ms))
-            {
-                br.ReadBit();
-                br.ReadBits(10);
-                br.ReadBool();
-                br.ReadByte();
-                br.ReadBytes(10);
-                br.ReadChar();
-                br.ReadChars(10);
-                br.ReadInt();
-                br.ReadLong();
-                br.ReadUInt();
-                br.ReadULong();
-                br.ReadString();
-
-                bw.Flush();
-            }
-        }
-
-        [TestMethod]
         public void TestBit()
         {
             using (MemoryStream ms = new MemoryStream())

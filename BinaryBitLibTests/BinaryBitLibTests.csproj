@@ -57,6 +57,7 @@
     <Compile Include="CharTests.cs" />
     <Compile Include="StringTests.cs" />
     <Compile Include="BufferedNumericsTests.cs" />
+    <Compile Include="ResourcesTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BinaryBitLib\BinaryBitLib.csproj">

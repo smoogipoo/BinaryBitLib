@@ -291,8 +291,6 @@ namespace BinaryBitLib
 
         #region Disposal
 
-        private bool disposed;
-
         public void Dispose()
         {
             Dispose(true);
@@ -301,21 +299,13 @@ namespace BinaryBitLib
 
         protected void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (BaseStream != null)
             {
-                if (disposing)
-                {
-                    if (BaseStream != null)
-                    {
-                        BaseStream.Flush();
-                        BaseStream.Dispose();
-                    }
-                }
-
-                BaseStream = null;
-                
-                disposed = true;
+                BaseStream.Flush();
+                BaseStream.Dispose();
             }
+
+            BaseStream = null;
         }
 
         ~BinaryBitWriter()
