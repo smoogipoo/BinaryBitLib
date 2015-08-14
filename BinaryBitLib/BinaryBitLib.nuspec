@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/smoogipooo/BinaryBitLib</licenseUrl>
+    <projectUrl>https://github.com/smoogipooo/BinaryBitLib</projectUrl>
+    <iconUrl>http://u.smgi.me/buY.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Add ReadFloat, ReadDouble, ReadDecimal, WriteFloat, WriteDouble, WriteDecimal. Fix bit positions being tracked with ints instead of longs. Improve disposal/finalization.</releaseNotes>
+    <copyright>Copyright smoogipooo 2015</copyright>
+    <tags>Binary Byte Bit BinaryReader BinaryWriter Write Read Bits Bytes BitReader BitWriter</tags>
+  </metadata>
+</package>

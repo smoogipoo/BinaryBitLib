@@ -183,4 +183,3 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 BinaryBitLib/nuget.exe
-BinaryBitLib/BinaryBitLib.nuspec
