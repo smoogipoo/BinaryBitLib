@@ -232,17 +232,17 @@ namespace BinaryBitLib
             byte msb = ReadBit();
             numBits--;
 
-            int ret = msb == 1 ? ~0 : 0;
+            uint ret = (uint)(msb == 1 ? ~0 : 0);
 
             for (int i = 0; i < numBits; i++)
             {
                 if (msb == 1)
-                    ret &= ~(1 << i);
+                    ret &= ~((uint)1 << i);
                 byte r = ReadBit();
-                ret |= r << i;
+                ret |= (uint)r << i;
             }
 
-            return ret;
+            return (int)ret;
         }
 
         /// <summary>
@@ -258,17 +258,17 @@ namespace BinaryBitLib
             byte msb = ReadBit();
             numBits--;
 
-            long ret = msb == 1 ? ~0 : 0;
+            ulong ret = (ulong)(msb == 1 ? ~0 : 0);
 
             for (int i = 0; i < numBits; i++)
             {
                 if (msb == 1)
-                    ret &= ~(1 << i);
+                    ret &= ~((ulong)1 << i);
                 byte r = ReadBit();
-                ret |= (long)r << i;
+                ret |= (ulong)r << i;
             }
 
-            return ret;
+            return (long)ret;
         }
 
         /// <summary>
