@@ -32,7 +32,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
-                    Assert.AreEqual(br.ReadUInt(16), vals[i]);
+                    Assert.AreEqual(vals[i], br.ReadUInt(16));
             }
         }
 
@@ -60,7 +60,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
-                    Assert.AreEqual(br.ReadInt(16), vals[i]);
+                    Assert.AreEqual(vals[i], br.ReadInt(16));
             }
         }
 
@@ -88,7 +88,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
-                    Assert.AreEqual(br.ReadUInt(32), vals[i]);
+                    Assert.AreEqual(vals[i], br.ReadUInt(32));
             }
         }
 
@@ -116,7 +116,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
-                    Assert.AreEqual(br.ReadInt(32), vals[i]);
+                    Assert.AreEqual(vals[i], br.ReadInt(32));
             }
         }
 
@@ -144,7 +144,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
-                    Assert.AreEqual(br.ReadULong(64), vals[i]);
+                    Assert.AreEqual(vals[i], br.ReadULong(64));
             }
         }
 
@@ -172,7 +172,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
-                    Assert.AreEqual(br.ReadLong(64), vals[i]);
+                    Assert.AreEqual(vals[i], br.ReadLong(64));
             }
         }
 
@@ -200,7 +200,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
-                    Assert.AreEqual(br.ReadFloat(32), vals[i]);
+                    Assert.AreEqual(vals[i], br.ReadFloat(32));
             }
         }
 
@@ -228,7 +228,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
-                    Assert.AreEqual(br.ReadDouble(64), vals[i]);
+                    Assert.AreEqual(vals[i], br.ReadDouble(64));
             }
         }
 
@@ -253,7 +253,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < Config.MULTI_TEST_COUNT; i++)
-                    Assert.AreEqual(br.ReadDecimal(128), vals[i]);
+                    Assert.AreEqual(vals[i], br.ReadDecimal(128));
             }
         }
     }

@@ -27,9 +27,9 @@ namespace BinaryBitLibTests
                 for (int i = 0; i < 256; i++)
                 {
                     if (i == 0)
-                        Assert.AreEqual(br.ReadBit(), 0);
+                        Assert.AreEqual(0, br.ReadBit());
                     else
-                        Assert.AreEqual(br.ReadBit(), 1);
+                        Assert.AreEqual(1, br.ReadBit());
                 }
             }
         }
@@ -69,7 +69,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < 256; i++)
-                    Assert.AreEqual(br.ReadByte(), (byte)i);
+                    Assert.AreEqual((byte)i, br.ReadByte());
             }
         }
 
@@ -91,7 +91,7 @@ namespace BinaryBitLibTests
 
                 byte[] readBytes = br.ReadBytes(Config.MULTI_TEST_COUNT);
                 for (int i = 0; i < readBytes.Length; i++)
-                    Assert.AreEqual(readBytes[i], writeBytes[i]);
+                    Assert.AreEqual(writeBytes[i], readBytes[i]);
             }
         }
     }

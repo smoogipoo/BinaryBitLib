@@ -23,7 +23,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < 128; i++)
-                    Assert.AreEqual(br.ReadChar(), (char)i);
+                    Assert.AreEqual((char)i, br.ReadChar());
             }
         }
 
@@ -41,7 +41,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < 55296; i++)
-                    Assert.AreEqual(br.ReadChar(), (char)i);
+                    Assert.AreEqual((char)i, br.ReadChar());
             }
         }
 
@@ -59,7 +59,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < 55296; i++)
-                    Assert.AreEqual(br.ReadChar(), (char)i);
+                    Assert.AreEqual((char)i, br.ReadChar());
             }
         }
 
@@ -77,7 +77,7 @@ namespace BinaryBitLibTests
                 ms.Position = 0;
 
                 for (int i = 0; i < 55296; i++)
-                    Assert.AreEqual(br.ReadChar(), (char)i);
+                    Assert.AreEqual((char)i, br.ReadChar());
             }
         }
     }

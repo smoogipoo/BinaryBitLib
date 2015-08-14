@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
-  	<releaseNotes>Add ReadFloat, ReadDouble, ReadDecimal, WriteFloat, WriteDouble, WriteDecimal. Fix bit positions being tracked with ints instead of longs. Improve disposal/finalization. More test cases.</releaseNotes>
+  	<releaseNotes>Improve test cases.</releaseNotes>
 
     <id>BinaryBitLib</id>
-    <version>1.2.1</version>
+    <version>1.2.3</version>
     <iconUrl>http://u.smgi.me/buY.png</iconUrl>
 
     <authors>smoogipooo</authors>
