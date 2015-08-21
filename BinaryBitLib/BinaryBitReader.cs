@@ -232,14 +232,11 @@ namespace BinaryBitLib
             byte msb = ReadBit();
             numBits--;
 
-            uint ret = (uint)(msb == 1 ? ~0 : 0);
-
-            for (int i = 0; i < numBits; i++)
+            uint ret = ReadUInt(numBits);
+            if (msb == 1)
             {
-                if (msb == 1)
-                    ret &= ~((uint)1 << i);
-                byte r = ReadBit();
-                ret |= (uint)r << i;
+                for (int i = numBits; i <= 31; i++)
+                    ret |= (uint)1 << i;
             }
 
             return (int)ret;
@@ -250,7 +247,7 @@ namespace BinaryBitLib
         /// </summary>
         /// <param name="numBits">The number of bits to read.</param>
         /// <returns>The signed long.</returns>
-        public long ReadLong(long numBits = 64)
+        public long ReadLong(int numBits = 64)
         {
             if (numBits > 64 || numBits < 1)
                 throw new ArgumentException("numBits");
@@ -258,14 +255,12 @@ namespace BinaryBitLib
             byte msb = ReadBit();
             numBits--;
 
-            ulong ret = (ulong)(msb == 1 ? ~0 : 0);
+            ulong ret = ReadULong(numBits);
 
-            for (int i = 0; i < numBits; i++)
+            if (msb == 1)
             {
-                if (msb == 1)
-                    ret &= ~((ulong)1 << i);
-                byte r = ReadBit();
-                ret |= (ulong)r << i;
+                for (int i = numBits; i <= 63; i++)
+                    ret |= (ulong)1 << i;
             }
 
             return (long)ret;

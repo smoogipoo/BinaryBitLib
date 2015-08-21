@@ -140,12 +140,10 @@ namespace BinaryBitLib
             if (numBits > 32 || numBits < 1)
                 throw new ArgumentException("numBits");
 
-            uint tmp = *(uint*)&value;
-            
-            WriteBit((tmp & ((uint)1 << numBits - 1)) > 0 ? (byte)1 : (byte)0);
+            WriteBit(((uint)value & ((uint)1 << 31)) > 0 ? (byte)1 : (byte)0);
             numBits--;
 
-            WriteUInt(tmp, numBits);
+            WriteUInt((uint)value, numBits);
         }
 
         /// <summary>
@@ -158,12 +156,10 @@ namespace BinaryBitLib
             if (numBits > 64 || numBits < 1)
                 throw new ArgumentException("numBits");
 
-            ulong tmp = *(ulong*)&value;
-            
-            WriteBit((tmp & ((ulong)1 << numBits - 1)) > 0 ? (byte)1 : (byte)0);
+            WriteBit(((ulong)value & ((ulong)1 << numBits - 1)) > 0 ? (byte)1 : (byte)0);
             numBits--;
 
-            WriteULong(tmp, numBits);
+            WriteULong((ulong)value, numBits);
         }
 
         /// <summary>
